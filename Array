@@ -1,0 +1,196 @@
+//Reverse an array 
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n=6;
+    int i=0;
+    int arr[n]={1,2,3,4,5,6};
+    for (i=0;i<n;i++){
+        cout<<arr[i];
+    }
+    for (i=0;i<n/2;i++){
+        int temp;
+        temp=arr[i];
+        arr[i]=arr[n-i-1];
+        arr[n-i-1]=temp;
+    }
+    for (i=0;i<n;i++){
+        cout<<arr[i];
+    }
+     return 0;
+}
+
+
+// maximum of array 
+#include <iostream>
+using namespace std;
+int max(int* arr,int start,int end)
+{
+    int mid=(start+end)/2;
+    
+    if (start==end){
+        return arr[start];
+    }
+    else if ((max(arr,start,mid))>(max(arr,mid+1,end))){
+            return (max(arr,start,mid));
+    }
+    else {
+            return (max(arr,mid+1,end));
+    }
+}
+int main()
+{
+    int n=17;
+    int i=0;
+    int arr[n]={1,2,3,4,5,6,7,5,7,0,1,2,9,4,1,3,10};
+    cout<<max(arr,0,16);
+}
+
+
+//Sort array of 0 1 and 2s 
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n=18;
+    int i=0;
+    int arr[n]={0,1,2,1,1,2,1,2,0,0,1,0,2,0,1,2,1,0};
+    int zero=0,one=0,two=0;
+    cout<<zero<<one<<two;
+    for(i=0;i<n;i++){
+        if (arr[i]==0){
+            zero=zero+1;
+        }
+        if (arr[i]==1){
+            one=one+1;
+        }
+        if (arr[i]==2){
+            two=two+1;
+        }
+    }
+    for(i=0;i<zero;i++){
+        arr[i]=0;
+    }
+    for(i=zero;i<one+zero;i++){
+        arr[i]=1;
+    }
+    for(i=one+zero;i<n;i++){
+        arr[i]=2;
+    }
+    for (i=0;i<n;i++){
+        cout<<arr[i];
+    }
+}
+//move all negatives to one side of the array
+#include <iostream>
+using namespace std;
+void swap(int* one,int* two){
+    int temp;
+    *one=temp;
+    *one=*two;
+    *two=temp;
+}
+void shift(int* arr,int len){
+    int low=0,high=len-1;
+    int i=0;
+    while(low!=high){
+        if (arr[low]>=0){
+            swap(arr[high],arr[low]);
+            high=high-1;
+        }
+        else{
+            low=low+1;
+        }
+      
+    }
+    
+}
+int main()
+{
+    int n=12;
+    int i=0,m=2;
+    int arr[18]={-1,0,9,8,-1,-4,-8,4,5,2,6,2,8,7,-4,-5,9,0};
+    shift(arr,18);
+    for (i=0;i<18;i++){
+        cout<<arr[i];
+    }
+}
+
+
+//intersection and union of arrays 
+#include <iostream>
+using namespace std;
+
+void unionlol(int* arr,int* arr_,int len,int len_){
+    int large;
+    if (arr_[len_-1]>arr[len-1]){
+    large=arr_[len_-1];
+    }
+    else{
+    large=arr[len-1];
+    }
+    int temp[large+1];
+    int i=0;
+    for (i=0;i<len_;i++){
+        temp[arr_[i]]=1;
+    }
+    for (i=0;i<len;i++){
+        temp[arr[i]]=1;
+    }
+    int lol[len+len_];
+    int k=0;
+    for (i=0;i<large+1;i++){
+        if (temp[i]==1){
+            lol[k]=i;
+            k=k+1;
+            
+        }
+    }
+    for (i=0;i<k;i++){
+    cout<<lol[i]<<",";}
+}
+void intersect(int* arr,int* arr_,int len,int len_){
+    int i=0,j=0,k=0,size;
+    if (len>len_){
+        size=len_;
+    }
+    else{
+        size=len;
+    }
+    int temp[size];
+    while (i<len && j<len_){
+        if (arr[i]==arr_[j]){
+            temp[k]=arr[i];
+            k=k+1;
+            i=i+1;
+            j++;
+        }
+        else{
+            if (arr[i]<arr_[j]){
+                i=i+1;
+            }
+            else{
+                j=j+1;
+            }
+        }
+    }
+    for (i=0;i<k;i++){
+    cout<<temp[i]<<",";}
+}
+int main()
+{
+    int n=12,m=11;
+    int i=0;
+    int arr[n]={1,2,3,4,5,6,7,8,9,10,11,12};//bada wala array
+    int arr_[m]={1,3,5,7,9,11,12,15,17,19,21};//small wala array
+    intersect(arr,arr_,12,11);
+    cout<<"\n";
+    unionlol(arr,arr_,12,11);
+    
+}
+
+
+
+
+
