@@ -1,1 +1,75 @@
+#include <iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node *next;
+};
+void push(int data,Node* head){
+    Node* temp= new Node();
+    temp->data=data;
+    temp->next=NULL;
+    Node* k=head;
+    while (k->next !=NULL){
+        k=k->next;
+    }
+    k->next=temp;
+    
+}
+void print(Node*head){
+    Node* k=head;
+    while (k!=NULL){
+        cout<<k->data;
+        k=k->next;
+    }
+}
+int len(Node* head ){
+    if 
+    (head==NULL)
+    {
+        return 0;
+    }
+    Node* k=head;
+    int count=1;
+    while (k->next!=NULL){
+        count=count +1;
+        k=k->next;
+        
+    }
+    return count;
+}
+int getcountrecursive(Node* head){
+    if (head== NULL){
+        return 0;
+        
+    }
+    else{
+        return 1+getcountrecursive(head->next);
+    }
+    
+}
+int search(Node*head,int data){
 
+    int count=1;
+    while ( head->next!=NULL){
+        
+        if (head->data==data){
+            break;
+        }
+        else{
+            head=head->next;
+            count=count+1;
+        }
+    }
+    return count;
+}
+int main()
+{
+    Node* head=new Node();
+    head->data=2;
+    head->next=NULL;
+    push(3,head);
+    push(4,head);
+    push(5,head);
+    cout<<search(head,4);
+}
